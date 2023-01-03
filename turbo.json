@@ -17,9 +17,16 @@
       ],
       "outputs": ["dist/**", ".next/**"],
       "cache": false
-    },        
+    },
+    "type:watch": {
+      "dependsOn": [
+        "^type:watch"
+      ],
+      "outputs": ["dist/**", ".next/**"],
+      "cache": false
+    },
     "validator:dev": {
-      "dependsOn": ["validator:watch"]
+      "dependsOn": ["validator:watch", "type:watch"]
     }
   }
 }
