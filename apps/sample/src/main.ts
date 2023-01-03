@@ -2,8 +2,8 @@ import { RuleValidator } from "validator";
 
 const vali1 = new RuleValidator(cases=>{
   cases(rules=>{
-    rules.trim();
-    rules.ip("noip");
+    rules.runTrim();
+    rules.isIp("noip");
   });
 });
 const result = vali1.check(" 422.11.1.4  ");
