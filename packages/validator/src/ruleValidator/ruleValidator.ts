@@ -31,7 +31,7 @@ export class RuleValidator extends Validator {
             result = value;
             return ruleCase.ruleList.every(([rule, message]) => {
                 result = rule(result, target);
-                if (result === RuleValidator.FALSE) {
+                if (result === FALSE) {
                     msg = message + "";
                     return false;
                 } else return true;
@@ -39,7 +39,7 @@ export class RuleValidator extends Validator {
         });
         return new Result(
           isOk,
-          result,
+          isOk ? result : value,
           !isOk ? this.#messageReplacer(this.message(msg), value) : ""
         );
     }
