@@ -2,10 +2,11 @@ import { Result } from "../validator/result";
 import { Validator } from "../validator/validator";
 import { Rules } from "./rules";
 
+export const FALSE = Object.freeze({});
 const REPLACER: (message: string, value: any) => string = (message, value) => message;
 
 export class RuleValidator extends Validator {
-    static FALSE = Object.freeze({});
+    static FALSE = FALSE;
 
     readonly #messageReplacer: (a: string, b: any) => string;
     readonly #ruleCases: Rules[] = [];

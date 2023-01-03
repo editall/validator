@@ -1,7 +1,6 @@
 import {Rule} from "./rule";
-import { RuleValidator } from "./ruleValidator";
+import { FALSE, RuleValidator } from "./ruleValidator";
 
-const FALSE = RuleValidator.FALSE;
 const asNumber:Rule = value => parseFloat("" + value);
 const asInt:Rule = value => parseInt("" + value);
 const asBool:Rule = value => Boolean(value);

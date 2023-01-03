@@ -1,4 +1,4 @@
-class a {
+class g {
   isOk;
   value;
   message;
@@ -6,27 +6,27 @@ class a {
     this.isOk = t, this.value = i, this.message = o;
   }
 }
-let g = "invalid";
-const f = new a();
+let c = "invalid";
+const f = new g();
 class m {
   static set defaultMessage(t) {
-    g = t;
+    c = t;
   }
   defaultMessage = "";
   message(t) {
-    return (t || this.defaultMessage) ?? g;
+    return (t || this.defaultMessage) ?? c;
   }
   check(t, i) {
     return f;
   }
 }
-const n = c.FALSE, L = (s) => parseFloat("" + s), y = (s) => parseInt("" + s), E = (s) => Boolean(s), A = (s) => "" + s, b = (s) => typeof s == "string" ? s.trim() : n, R = (s) => {
+const L = (s) => parseFloat("" + s), y = (s) => parseInt("" + s), E = (s) => Boolean(s), A = (s) => "" + s, b = (s) => typeof s == "string" ? s.trim() : n, R = (s) => {
   if (typeof s != "string")
     return n;
   const t = s.indexOf(`
 `);
   return t === -1 ? s : s.substring(0, t);
-}, S = (s) => (t) => "length" in t && t.length === s ? t : n, l = (s) => (t) => "length" in t && t.length >= s ? t : n, M = (s) => (t) => "length" in t && t.length <= s ? t : n, W = (s, t) => (i) => "length" in i && i.length >= s && i.length <= t ? i : n, U = (s, t) => (i) => "length" in i && i.length < s && i.length > t ? i : n, O = (s) => (t) => typeof t == "number" && t < s ? t : n, z = (s) => (t) => typeof t == "number" && t > s ? t : n, B = (s, t) => (i) => typeof i == "number" && i >= s && i <= t ? i : n, C = (s, t) => (i) => typeof i == "number" && i < s && i > t ? i : n, I = (s) => (t) => typeof t == "string" && t.startsWith(s) ? t : n, Z = (s) => (t) => typeof t == "string" && !t.startsWith(s) ? t : n, $ = (s) => (t) => typeof t == "string" && t.endsWith(s) ? t : n, k = (s) => (t) => typeof t == "string" && !t.endsWith(s) ? t : n, F = (...s) => (t) => s.indexOf(t) !== -1 ? t : n, P = (...s) => (t) => s.indexOf(t) === -1 ? t : n, T = (s) => (t) => t === s ? t : n, x = (s) => (t) => t !== s ? t : n, u = (s) => typeof s == "number" ? s : n, w = (s) => typeof s != "number" ? s : n, q = (s) => typeof s == "string" ? s : n, G = (s) => typeof s != "string" ? s : n, H = (s) => typeof s == "boolean" ? s : n, j = (s) => typeof s != "boolean" ? s : n, V = (s) => typeof s == "string" && !s.trim().length ? s : n, D = (s) => typeof s == "string" && s.trim().length ? s : n, J = (s) => typeof s == "string" && !s.length ? s : n, K = (s) => typeof s == "string" && s.length ? s : n, e = (s) => (t) => typeof t == "string" && s.test(t) ? t : n, Q = e(/^(?:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)\.){3}(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)$/), X = e(/^https?:\/\/[a-zA-Z0-9.-]+(?:\.+[A-Za-z]{2,4})+(?::\d{2,4})?/), Y = e(/^[0-9a-zA-Z-_.]+@[0-9a-zA-Z-.]+(?:[.]+[A-Za-z]{2,4})+$/), _ = e(/^[a-z]+$/), v = e(/^[A-Z]+$/), tt = e(/^-?(?:0|[1-9]\d*)(?:\.\d+)?(?:[eE][-+]?\d+)?$/), st = e(/^-?(?:0|[1-9]\d*)$/), it = e(/^[a-z0-9]+$/), nt = e(/^[A-Z0-9]+$/), ot = e(/^[a-zA-Z0-9]+$/), et = e(/^[a-zA-Z0-9\s]+$/), ht = e(/^[a-z]/), rt = e(/^[A-Z]/);
+}, l = (s) => (t) => "length" in t && t.length === s ? t : n, S = (s) => (t) => "length" in t && t.length >= s ? t : n, M = (s) => (t) => "length" in t && t.length <= s ? t : n, W = (s, t) => (i) => "length" in i && i.length >= s && i.length <= t ? i : n, U = (s, t) => (i) => "length" in i && i.length < s && i.length > t ? i : n, O = (s) => (t) => typeof t == "number" && t < s ? t : n, z = (s) => (t) => typeof t == "number" && t > s ? t : n, B = (s, t) => (i) => typeof i == "number" && i >= s && i <= t ? i : n, C = (s, t) => (i) => typeof i == "number" && i < s && i > t ? i : n, I = (s) => (t) => typeof t == "string" && t.startsWith(s) ? t : n, Z = (s) => (t) => typeof t == "string" && !t.startsWith(s) ? t : n, $ = (s) => (t) => typeof t == "string" && t.endsWith(s) ? t : n, k = (s) => (t) => typeof t == "string" && !t.endsWith(s) ? t : n, P = (...s) => (t) => s.indexOf(t) !== -1 ? t : n, T = (...s) => (t) => s.indexOf(t) === -1 ? t : n, x = (s) => (t) => t === s ? t : n, F = (s) => (t) => t !== s ? t : n, u = (s) => typeof s == "number" ? s : n, w = (s) => typeof s != "number" ? s : n, q = (s) => typeof s == "string" ? s : n, G = (s) => typeof s != "string" ? s : n, H = (s) => typeof s == "boolean" ? s : n, j = (s) => typeof s != "boolean" ? s : n, V = (s) => typeof s == "string" && !s.trim().length ? s : n, D = (s) => typeof s == "string" && s.trim().length ? s : n, J = (s) => typeof s == "string" && !s.length ? s : n, K = (s) => typeof s == "string" && s.length ? s : n, e = (s) => (t) => typeof t == "string" && s.test(t) ? t : n, Q = e(/^(?:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)\.){3}(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)$/), X = e(/^https?:\/\/[a-zA-Z0-9.-]+(?:\.+[A-Za-z]{2,4})+(?::\d{2,4})?/), Y = e(/^[0-9a-zA-Z-_.]+@[0-9a-zA-Z-.]+(?:[.]+[A-Za-z]{2,4})+$/), _ = e(/^[a-z]+$/), v = e(/^[A-Z]+$/), tt = e(/^-?(?:0|[1-9]\d*)(?:\.\d+)?(?:[eE][-+]?\d+)?$/), st = e(/^-?(?:0|[1-9]\d*)$/), it = e(/^[a-z0-9]+$/), nt = e(/^[A-Z0-9]+$/), ot = e(/^[a-zA-Z0-9]+$/), et = e(/^[a-zA-Z0-9\s]+$/), ht = e(/^[a-z]/), rt = e(/^[A-Z]/);
 class ct {
   ruleList = [];
   #t(t, i) {
@@ -54,10 +54,10 @@ class ct {
     this.#t(R, t);
   }
   isLength(t, i) {
-    this.#t(S(t), i);
+    this.#t(l(t), i);
   }
   isMinLength(t, i) {
-    this.#t(l(t), i);
+    this.#t(S(t), i);
   }
   isMaxLength(t, i) {
     this.#t(M(t), i);
@@ -93,16 +93,16 @@ class ct {
     this.#t(k(t), i);
   }
   isContains(t = void 0, ...i) {
-    this.#t(F(...i), t);
-  }
-  isNotContains(t = void 0, ...i) {
     this.#t(P(...i), t);
   }
+  isNotContains(t = void 0, ...i) {
+    this.#t(T(...i), t);
+  }
   isEqual(t, i) {
-    this.#t(T(t), i);
+    this.#t(x(t), i);
   }
   isNotEqual(t, i) {
-    this.#t(x(t), i);
+    this.#t(F(t), i);
   }
   isNumber(t) {
     this.#t(u, t);
@@ -174,9 +174,9 @@ class ct {
     this.#t(rt, t);
   }
 }
-const gt = (s, t) => s;
-class c extends m {
-  static FALSE = Object.freeze({});
+const n = Object.freeze({}), gt = (s, t) => s;
+class a extends m {
+  static FALSE = n;
   #t;
   #s = [];
   constructor(t, i = "", o = gt) {
@@ -187,8 +187,8 @@ class c extends m {
   }
   check(t, i) {
     let o, r = "";
-    const h = this.#s.some((p) => (o = t, p.ruleList.every(([N, d]) => (o = N(o, i), o === c.FALSE ? (r = d + "", !1) : !0))));
-    return new a(
+    const h = this.#s.some((p) => (o = t, p.ruleList.every(([N, d]) => (o = N(o, i), o === a.FALSE ? (r = d + "", !1) : !0))));
+    return new g(
       h,
       o,
       h ? "" : this.#t(this.message(r), t)
@@ -196,5 +196,5 @@ class c extends m {
   }
 }
 export {
-  c as RuleValidator
+  a as RuleValidator
 };
