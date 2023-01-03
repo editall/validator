@@ -1,0 +1,52 @@
+{
+  "name": "validator",
+  "version": "0.1.0",
+  "description": "validation framework",
+  "type": "module",
+  "types": "./dist/types/index.d.ts",
+  "module": "./dist/validator.js",
+  "main": "./dist/validator.umd.cjs",
+  "files": ["dist"],
+  "exports": {
+    ".": {
+      "import": "./dist/validator.js",
+      "require": "./dist/validator.umd.cjs"
+    }
+  },
+  "scripts": {
+    "build": "vite build --config=vite.config.js",
+    "validator:watch": "vite build --watch --config=vite.config.js",
+    "type:watch": "tsc -p ./tsconfig.json --watch --declaration --allowJs --emitDeclarationOnly",
+    "test": "vitest",
+    "release": "release-it"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/editall/validator.git"
+  },
+  "keywords": [
+    "validator"
+  ],
+  "author": "editall",
+  "license": "MIT",
+  "contributors": [
+    {
+      "name": "hikaMaeng",
+      "email": "hika00@gmail.com"
+    },
+    {
+      "name": "easylogic",
+      "email": "cyberuls@gmail.com"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/editall/validator/issues"
+  },
+  "homepage": "https://github.com/editall/validator#readme",
+  "devDependencies": {
+    "release-it": "^15.5.1",
+    "typescript": "^4.9.4",
+    "vite": "^4.0.0",
+    "vitest": "0.25.7"
+  }
+}

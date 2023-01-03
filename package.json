@@ -1,0 +1,33 @@
+{
+  "name": "validator",
+  "version": "0.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev --parallel",
+    "lint": "turbo run lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "validator:dev": "turbo run validator:dev --parallel",
+    "changeset": "changeset",
+    "version": "changeset version",
+    "postversion": "git push && git push --tags",
+    "release": "changeset publish"
+  },
+  "devDependencies": {
+    "changeset": "^0.2.6",
+    "eslint-config-custom": "*",
+    "prettier": "latest",
+    "turbo": "latest"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "dependencies": {
+    "@changesets/cli": "^2.25.0"
+  },
+  "packageManager": "npm@8.19.2"
+}

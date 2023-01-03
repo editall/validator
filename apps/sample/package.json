@@ -1,0 +1,41 @@
+{
+  "name": "validator-sample",
+  "version": "0.0.1",
+  "description": "validator sample",
+  "scripts": {
+    "validator:dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest",
+    "release": "release-it"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/editall/validator.git"
+  },
+  "keywords": [
+    "validator"
+  ],
+  "author": "editall",
+  "license": "MIT",
+  "contributors": [
+    {
+      "name": "hikaMaeng",
+      "email": "hika00@gmail.com"
+    },
+    {
+      "name": "easylogic",
+      "email": "cyberuls@gmail.com"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/editall/validator/issues"
+  },
+  "homepage": "https://github.com/editall/validator#readme",
+  "devDependencies": {
+    "release-it": "^15.5.1",
+    "typescript": "^4.9.4",
+    "vite": "^4.0.0",
+    "vitest": "0.25.7"
+  }
+}
