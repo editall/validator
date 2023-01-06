@@ -189,7 +189,46 @@ console.log(idValidator.check("hika").message); // 4자 입니다. 6 ~ 14자의 
 ```
 
 이제 각 상황별로 정확하게 값을 고려해 메세지를 만들어낼 수 있게 되었습니다.
+이러한 리플레이서는 단순히 문자열을 바꿀 때만 사용하는 것은 아닙니다. 함수의 형태이므로 복잡한 상황에서 유용하게 사용할 수 있습니다.
 
+```typescript
+import { RuleValidator } from "@edit-all/validator";
+
+//다국어 리소스
+const resource = {
+  "language":"en",
+   "ko":{
+     error1:"문자열이 아님",
+     error2:"첫번째 글자가 소문자가 아님",
+     error3:"@v@자 입니다. 6 ~ 14자의 길이로 작성해주세요.",
+     error4:"소문자, 숫자 외의 문자가 포함됨",
+   },
+   "en":{
+      error1:"invalid string",
+      error2:"first charater is not lower case",
+      error3:"valid length range is 6 ~ 14",
+      error4:"include character except lower case & number",
+   },
+};
+
+const idValidator = new RuleValidator(
+  cases=>{
+    cases( rules=>{
+      rules.isString("error1");
+      rules.isFirstLower("error2");
+      rules.isRangeLength(6, 14, "error3"); 
+      rules.isLowerNumber("error4");
+    });
+  },
+  "id invalid",
+  (message, value)=>resource[resource.language][message] // 다국어 리소스처리 
+);
+
+console.log(idValidator.check("hika").message); // valid length range is 6 ~ 14
+```
+
+위의 예에서 리플레이서는 메세지를 다국어 리소스의 키로 사용해서 메세지를 생성해냅니다.
+이러한 복잡한 메세지 체계는 각 도메인마다 특수할 수 있습니다. 밸리데이터는 이를 처리하는 인터페이스를 함수로 제공하기 때문에 유연하게 각 도메인에 대응하게 됩니다.
 ### 아이디에 이메일도 받아주기
 
 만약 아이디가 위의 조건으로 만들거나 혹은 이메일 둘 중 한 가지를 허용한다면 어떻게 해야할까요?
