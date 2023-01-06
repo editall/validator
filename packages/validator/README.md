@@ -322,6 +322,8 @@ const fruitsValidator = new RuleValidator(
    },
    "fruits invalid"
 );
+
+console.log(fruitsValidator.check(["banana", "apple", "orange", "kiwi"]).isOk); //true
 ```
 위의 예에서 배열인지 검사하는 isArray와 모든 배열의 원소가 지정된 과일인지를 검사하는 checkFruits라는 두 가지 룰을 만들었습니다.
 이를 조합해 최종적인 fruitsValidator를 완성할 수 있습니다.
