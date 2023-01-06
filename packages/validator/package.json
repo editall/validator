@@ -1,5 +1,5 @@
 {
-  "name": "validator",
+  "name": "@edit-all/validator",
   "version": "0.1.0",
   "description": "validation framework",
   "type": "module",

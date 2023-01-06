@@ -32,11 +32,13 @@
     "url": "https://github.com/editall/validator/issues"
   },
   "homepage": "https://github.com/editall/validator#readme",
+  "dependencies": {
+    "validator": "*"
+  },
   "devDependencies": {
     "release-it": "^15.5.1",
     "typescript": "^4.9.4",
     "vite": "^4.0.0",
-    "vitest": "0.25.7",
-    "validator": "*"
+    "vitest": "0.25.7"
   }
 }

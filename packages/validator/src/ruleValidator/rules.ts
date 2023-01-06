@@ -53,54 +53,55 @@ const ALPHANUMSPACE = regRule(/^[a-zA-Z0-9\s]+$/);
 const FIRSTLOW = regRule(/^[a-z]/);
 const FIRSTUP = regRule(/^[A-Z]/);
 
+export type REPLACER = (message: string, value: any) => string;
 export class Rules {
-    ruleList: [Rule, string|undefined][] = [];
-    #add(rule:Rule, message?:string){this.ruleList.push([rule, message]);}
-    rule(rule:Rule, message?:string){this.#add(rule, message);}
+    ruleList: [Rule, string|undefined, REPLACER|undefined][] = [];
+    #add(rule:Rule, message?:string, replacer?:REPLACER){this.ruleList.push([rule, message, replacer]);}
+    rule(rule:Rule, message?:string, replacer?:REPLACER){this.#add(rule, message, replacer);}
     asNumber(message?:string){this.#add(asNumber, message);}
     asInt(message?:string){this.#add(asInt, message);}
     asBool(message?:string){this.#add(asBool, message);}
     asString(message?:string){this.#add(asString, message);}
     runTrim(message?:string){this.#add(runTrim, message);}
     runOneLine(message?:string){this.#add(runOneLine, message);}
-    isLength(length:number, message?:string){this.#add(isLength(length), message);}
-    isMinLength(length: number, message?:string){this.#add(isMinLength(length), message);}
-    isMaxLength(length: number, message?:string){this.#add(isMaxLength(length), message);}
-    isRangeLength(min: number, max: number, message?:string){this.#add(isRangeLength(min, max), message);}
-    isNotRangeLength(min: number, max: number, message?:string){this.#add(isNotRangeLength(min, max), message);}
-    isLessThan(base: number, message?:string){this.#add(isLessThan(base), message);}
-    isGreaterThan(base: number, message?:string){this.#add(isGreaterThan(base), message);}
-    isRange(min: number, max: number, message?:string){this.#add(isRange(min, max), message);}
-    isNotRange(min: number, max: number, message?:string){this.#add(isNotRange(min, max), message);}
-    isStartWith(v: string, message?:string){this.#add(isStartWith(v), message);}
-    isNotStartWith(v: string, message?:string){this.#add(isNotStartWith(v), message);}
-    isEndWith(v: string, message?:string){this.#add(isEndWith(v), message);}
-    isNotEndWith(v: string, message?:string){this.#add(isNotEndWith(v), message);}
+    isLength(length:number, message?:string, replacer?:REPLACER){this.#add(isLength(length), message, replacer);}
+    isMinLength(length: number, message?:string, replacer?:REPLACER){this.#add(isMinLength(length), message, replacer);}
+    isMaxLength(length: number, message?:string, replacer?:REPLACER){this.#add(isMaxLength(length), message, replacer);}
+    isRangeLength(min: number, max: number, message?:string, replacer?:REPLACER){this.#add(isRangeLength(min, max), message, replacer);}
+    isNotRangeLength(min: number, max: number, message?:string, replacer?:REPLACER){this.#add(isNotRangeLength(min, max), message, replacer);}
+    isLessThan(base: number, message?:string, replacer?:REPLACER){this.#add(isLessThan(base), message, replacer);}
+    isGreaterThan(base: number, message?:string, replacer?:REPLACER){this.#add(isGreaterThan(base), message, replacer);}
+    isRange(min: number, max: number, message?:string, replacer?:REPLACER){this.#add(isRange(min, max), message, replacer);}
+    isNotRange(min: number, max: number, message?:string, replacer?:REPLACER){this.#add(isNotRange(min, max), message, replacer);}
+    isStartWith(v: string, message?:string, replacer?:REPLACER){this.#add(isStartWith(v), message, replacer);}
+    isNotStartWith(v: string, message?:string, replacer?:REPLACER){this.#add(isNotStartWith(v), message, replacer);}
+    isEndWith(v: string, message?:string, replacer?:REPLACER){this.#add(isEndWith(v), message, replacer);}
+    isNotEndWith(v: string, message?:string, replacer?:REPLACER){this.#add(isNotEndWith(v), message, replacer);}
     isContains(message:string|undefined = undefined, ...goals: any[]){this.#add(isContains(...goals), message);}
     isNotContains(message:string|undefined = undefined, ...goals: any[]){this.#add(isNotContains(...goals), message);}
-    isEqual(goal: any, message?:string){this.#add(isEqual(goal), message);}
-    isNotEqual(goal: any, message?:string){this.#add(isNotEqual(goal), message);}
-    isNumber(message?:string){this.#add(isNumber, message);}
-    isNotNumber(message?:string){this.#add(isNotNumber, message);}
-    isString(message?:string){this.#add(isString, message);}
-    isNotString(message?:string){this.#add(isNotString, message);}
-    isBool(message?:string){this.#add(isBool, message);}
-    isNotBool(message?:string){this.#add(isNotBool, message);}
-    isBlank(message?:string){this.#add(isBlank, message);}
-    isNotBlank(message?:string){this.#add(isNotBlank, message);}
-    isEmpty(message?:string){this.#add(isEmpty, message);}
-    isNotEmpty(message?:string){this.#add(isNotEmpty, message);}
-    isIp(message?:string){this.#add(IP, message);}
-    isUrl(message?:string){this.#add(URL, message);}
-    isEmail(message?:string){this.#add(EMAIL, message);}
-    isLowerCase(message?:string){this.#add(LOWER, message);}
-    isUpperCase(message?:string){this.#add(UPPER, message);}
-    isNumberString(message?:string){this.#add(NUM, message);}
-    isIntString(message?:string){this.#add(INTNUM, message);}
-    isLowerNumber(message?:string){this.#add(LOWNUM, message);}
-    isUpperNumber(message?:string){this.#add(UPNUM, message);}
-    isAlphaNumber(message?:string){this.#add(ALPHANUM, message);}
-    isAlphaNumberSpace(message?:string){this.#add(ALPHANUMSPACE, message);}
-    isFirstLower(message?:string){this.#add(FIRSTLOW, message);}
-    isFirstUpper(message?:string){this.#add(FIRSTUP, message);}
+    isEqual(goal: any, message?:string, replacer?:REPLACER){this.#add(isEqual(goal), message, replacer);}
+    isNotEqual(goal: any, message?:string, replacer?:REPLACER){this.#add(isNotEqual(goal), message, replacer);}
+    isNumber(message?:string, replacer?:REPLACER){this.#add(isNumber, message, replacer);}
+    isNotNumber(message?:string, replacer?:REPLACER){this.#add(isNotNumber, message, replacer);}
+    isString(message?:string, replacer?:REPLACER){this.#add(isString, message, replacer);}
+    isNotString(message?:string, replacer?:REPLACER){this.#add(isNotString, message, replacer);}
+    isBool(message?:string, replacer?:REPLACER){this.#add(isBool, message, replacer);}
+    isNotBool(message?:string, replacer?:REPLACER){this.#add(isNotBool, message, replacer);}
+    isBlank(message?:string, replacer?:REPLACER){this.#add(isBlank, message, replacer);}
+    isNotBlank(message?:string, replacer?:REPLACER){this.#add(isNotBlank, message, replacer);}
+    isEmpty(message?:string, replacer?:REPLACER){this.#add(isEmpty, message, replacer);}
+    isNotEmpty(message?:string, replacer?:REPLACER){this.#add(isNotEmpty, message, replacer);}
+    isIp(message?:string, replacer?:REPLACER){this.#add(IP, message, replacer);}
+    isUrl(message?:string, replacer?:REPLACER){this.#add(URL, message, replacer);}
+    isEmail(message?:string, replacer?:REPLACER){this.#add(EMAIL, message, replacer);}
+    isLowerCase(message?:string, replacer?:REPLACER){this.#add(LOWER, message, replacer);}
+    isUpperCase(message?:string, replacer?:REPLACER){this.#add(UPPER, message, replacer);}
+    isNumberString(message?:string, replacer?:REPLACER){this.#add(NUM, message, replacer);}
+    isIntString(message?:string, replacer?:REPLACER){this.#add(INTNUM, message, replacer);}
+    isLowerNumber(message?:string, replacer?:REPLACER){this.#add(LOWNUM, message, replacer);}
+    isUpperNumber(message?:string, replacer?:REPLACER){this.#add(UPNUM, message, replacer);}
+    isAlphaNumber(message?:string, replacer?:REPLACER){this.#add(ALPHANUM, message, replacer);}
+    isAlphaNumberSpace(message?:string, replacer?:REPLACER){this.#add(ALPHANUMSPACE, message, replacer);}
+    isFirstLower(message?:string, replacer?:REPLACER){this.#add(FIRSTLOW, message, replacer);}
+    isFirstUpper(message?:string, replacer?:REPLACER){this.#add(FIRSTUP, message, replacer);}
 }

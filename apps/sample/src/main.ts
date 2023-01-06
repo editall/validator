@@ -1,4 +1,4 @@
-import { RuleValidator } from "validator";
+import { RuleValidator } from "@edit-all/validator";
 
 const vali1 = new RuleValidator(cases=>{
   cases(rules=>{
