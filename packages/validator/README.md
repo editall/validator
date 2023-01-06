@@ -229,6 +229,7 @@ console.log(idValidator.check("hika").message); // valid length range is 6 ~ 14
 
 위의 예에서 리플레이서는 메세지를 다국어 리소스의 키로 사용해서 메세지를 생성해냅니다.
 이러한 복잡한 메세지 체계는 각 도메인마다 특수할 수 있습니다. 밸리데이터는 이를 처리하는 인터페이스를 함수로 제공하기 때문에 유연하게 각 도메인에 대응하게 됩니다.
+
 ### 아이디에 이메일도 받아주기
 
 만약 아이디가 위의 조건으로 만들거나 혹은 이메일 둘 중 한 가지를 허용한다면 어떻게 해야할까요?
@@ -265,6 +266,67 @@ console.log(idValidator.check("hika00@gmail.com").isOk); // true
 
 * [Rules가 제공하는 전체 rule리스트](./docs/ruleList.md)
 * [사용자 정의 rule만들기](./docs/customRule.md)
+
+## 직접 만든 룰을 추가하기
+
+위의 예에서는 이미 Rules가 내장하고 있는 룰을 사용했습니다.
+Rules는 많은 기본 룰을 제공하고 있지만 실무에서는 훨씬 더 다양하고 복잡한 룰이 필요할 수 있습니다. 이런 경우 직접 작성한 룰을 추가할 수 있습니다.
+하나의 룰은 다음과 같은 인터페이스로 되어있습니다.
+
+```typescript
+(value: any)=>any
+```
+
+인자로 임의의 값을 받으면 그 결과로 임의의 값을 반환하는 함수입니다. 헌데 이게 통과인지 실패인지 어떻게 아느냐면 실패한 경우 특수한 값을 반환하기 때문입니다.
+예를 들어 isString을 만들어보면 다음과 같습니다.
+
+```typescript
+const isString = (value)=> typeof value === "string" ? value : RuleValidator.FALSE;
+```
+
+위에서 작성한 함수에서 string타입이 아닌 경우 특수한 값인 RuleValidator.FALSE 를 반환하여 실패했음을 표시합니다.
+그런데 정상인 경우도 value를 반환합니다. 그 이유는 밸리데이터 라이브러리의 각 룰은 원래의 값을 변형할 수 있기 때문입니다.
+예를 들어 밸리데이션 흐름 속에서 trim을 하고 싶다면 다음과 같이 룰을 작성할 수 있습니다.
+
+```typescript
+const runTrim = (value)=> typeof value === "string" ? value.trim() : RuleValidator.FALSE;
+```
+
+runTrim은 인자로 받은 value를 그냥 반환하지 않고 trim()을 수행한 뒤 반환하게 되어 최종적인 Result의 value에 trim이 된 상태가 들어가게 됩니다.
+이러한 특성을 이용하면 밸리데이션을 거치면서 원하는 형태로 값을 다듬는 것도 가능하죠.
+
+### 실전 예제
+예를 들어 반드시 3개 이상의 원소로 구성된 배열이되 그 안에 들어갈 값은 미리 정해진 문자열로 구성되어야 하는 경우를 생각해보겠습니다.
+말로 하면 복잡하니 "좋아하는 과일을 3개 이상 고르시오" 정도로 이해하시면 됩니다.
+
+```typescript
+import { RuleValidator } from "@edit-all/validator";
+
+const fruitsValidator = new RuleValidator(
+   cases=>{
+      cases(rules=>{
+         //배열인지를 검사
+         const isArray = (value)=> value instanceof Array ? value : RuleValidator.FALSE;
+
+         //지정된 과일의 종류
+         const FRUITS = {
+            "apple":1, "banana":1, "pear":1, "mango":1, "orange":1, "kiwi":1, "melon":1
+         };
+         //배열내 모든 원소가 지정된 과일로 되어있는지 검사
+         const checkFruits = (value)=> value.every(item=>item in FRUITS) ? value : RuleValidator.FALSE;
+         
+         rules.rule(isArray, "배열이 아님");
+         rules.isMinLength(3, "최소 3개 이상 고르세요");
+         rules.rule(checkFruits, "지정된 과일만 고르세요");
+      });
+   },
+   "fruits invalid"
+);
+```
+위의 예에서 배열인지 검사하는 isArray와 모든 배열의 원소가 지정된 과일인지를 검사하는 checkFruits라는 두 가지 룰을 만들었습니다.
+이를 조합해 최종적인 fruitsValidator를 완성할 수 있습니다.
+
+밸리데이터는 이러한 설정이 지역범위 내에서 일어날 수 있게 각 구역이 람다로 격리되어 있습니다. 
 
 ## license
 MIT
